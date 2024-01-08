@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cn2q2140i0wqu"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_nyo6h"]
+[ext_resource type="Texture2D" uid="uid://bjyt7fh15e8uf" path="res://monochrome_tilemap_transparent.png" id="2_uk0ho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on1ce"]
+atlas = ExtResource("2_uk0ho")
+region = Rect2(68, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iluys"]
+atlas = ExtResource("2_uk0ho")
+region = Rect2(0, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv4y0"]
+atlas = ExtResource("2_uk0ho")
+region = Rect2(51, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygc8r"]
+atlas = ExtResource("2_uk0ho")
+region = Rect2(34, 204, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ds1r"]
+atlas = ExtResource("2_uk0ho")
+region = Rect2(17, 204, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_re8s7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on1ce")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iluys")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv4y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygc8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ds1r")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hwi2n"]
+radius = 3.0
+height = 10.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_nyo6h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_re8s7")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hwi2n")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
